@@ -6,6 +6,7 @@ import java.util.List;
 public class Restaurant {
     private String name;
     private String location;
+
     public LocalTime openingTime;
     public LocalTime closingTime;
     private List<Item> menu = new ArrayList<Item>();
@@ -18,15 +19,15 @@ public class Restaurant {
     }
 
     public boolean isRestaurantOpen() {
-        return true;
-        //DELETE ABOVE STATEMENT AND WRITE CODE HERE
+        //Open restaurant check - If current time is in between restaurant opening and closing time.
+        boolean isOpen = this.openingTime.isBefore(this.getCurrentTime()) && this.closingTime.isAfter(this.getCurrentTime()) ;
+        return isOpen;
     }
 
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
     public List<Item> getMenu() {
-        return null;
-        //DELETE ABOVE RETURN STATEMENT AND WRITE CODE HERE
+        return this.menu;
     }
 
     private Item findItemByName(String itemName){
