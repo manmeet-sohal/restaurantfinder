@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class RestaurantTest {
     Restaurant restaurant;
-    List<Item> selectedItems;
+    List<String> selectedItemNames;
     //REFACTOR ALL THE REPEATED LINES OF CODE
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>OPEN/CLOSED<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -84,17 +84,21 @@ class RestaurantTest {
         long sumValue_Expected = 30;
 
         restaurant = this.getRestaurantTestObject();
-        selectedItems = new ArrayList<Item>();
-        selectedItems.add(new Item("Item1", 10));
-        selectedItems.add(new Item("Item2", 20));
+        restaurant.addToMenu("Item1", 10);
+        restaurant.addToMenu("Item2", 20);
+        restaurant.addToMenu("Item3", 30);
+        restaurant.addToMenu("Item4", 40);
+        selectedItemNames = new ArrayList<String>();
+        selectedItemNames.add("Item1");
+        selectedItemNames.add("Item2");
 
-        Assertions.assertEquals(sumValue_Expected, restaurant.getOrderValue(selectedItems));
+        Assertions.assertEquals(sumValue_Expected, restaurant.getOrderValue(selectedItemNames));
     }
 
     @Test
     public void restaurant_menu_order_value_for_zero_item_should_be_zero(){
         restaurant = this.getRestaurantTestObject();
-        Assertions.assertEquals(0, restaurant.getOrderValue(new ArrayList<Item>()));
+        Assertions.assertEquals(0, restaurant.getOrderValue(new ArrayList<String>()));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }

@@ -64,11 +64,13 @@ public class Restaurant {
         return name;
     }
 
-    public long getOrderValue(List<Item> selectedItems) {
+    public long getOrderValue(List<String> selectedItems) {
         long sumValue = 0;
-        for(Item item: selectedItems){
-            System.out.println("item : " + item.toString());
-            sumValue += item.getPrice();
+        for(Item item: getMenu()){
+            if(selectedItems.contains(item.getName())){
+                //System.out.println("item : " + item.toString());
+                sumValue += item.getPrice();
+            }
         }
         return sumValue;
     }
